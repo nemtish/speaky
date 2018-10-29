@@ -7,8 +7,8 @@ export default {
 
     init () {
         axios.defaults.baseURL = store.getters.get_api_url
-        axios.defaults.withCredentials
-        this.setAuthorizationHeader()
+        // axios.defaults.withCredentials
+        // this.setAuthorizationHeader()
     },
 
     setAuthorizationHeader () {

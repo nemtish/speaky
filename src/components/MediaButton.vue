@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import constants from '../config/constants'
+import { audioActions } from '../config/constants'
 
 export default {
     props: {
@@ -20,23 +20,31 @@ export default {
     },
     data () {
         return {
-            action: constants.REC,
+            action: this.name,
             timer: 0
         }
     },
     methods: {
         btnClickHandler () {
             switch (this.action) {
-            case constants.REC:
-                this.action = constants.STOP
-                this.$emit(constants.REC)
+            case audioActions.REC:
+                this.action = audioActions.STOP
+                this.$emit(audioActions.REC)
                 break
-            case constants.STOP:
-                this.action = constants.REC
-                this.$emit(constants.STOP)
+            case audioActions.STOP:
+                this.action = audioActions.REC
+                this.$emit(audioActions.STOP)
+                break
+            case audioActions.PLAY:
+                this.action = audioActions.PAUSE
+                this.$emit(audioActions.PLAY)
+                break
+            case audioActions.PAUSE:
+                this.action = audioActions.PLAY
+                this.$emit(audioActions.PAUSE)
                 break
             default:
-                this.action = constants.REC
+                this.action = audioActions.REC
             }
         }
     }
@@ -47,9 +55,14 @@ export default {
 	$btn-size: 100px;
 	$rec-fs: $btn-size/1.5;
 	$stop-fs: $btn-size/2.14;
+
 	.btn-holder {
-		margin: 0 auto;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        margin: 0 auto;
 		.btn {
+            margin: 0 auto;
 			width: $btn-size;
 			height: $btn-size;
 			position: relative;
@@ -115,10 +128,10 @@ export default {
 
 				&:after {
 					content: "▶";
-					left: 38%;
-					top: 27%;
-					color: white;
-					font-size: 50px;
+                    left: 37%;
+                    top: 25%;
+                    color: white;
+                    font-size: 41px;
 				}
 
 				&:hover {
@@ -143,10 +156,10 @@ export default {
 
 				&:after {
 					content: '▐▐';
-					left: 34%;
-					top: 33%;
-					color: white;
-					font-size: 30px;
+                    left: 32%;
+                    top: 33%;
+                    color: white;
+                    font-size: 26px;
 				}
 
 				&:hover {

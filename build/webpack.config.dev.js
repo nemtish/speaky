@@ -16,10 +16,15 @@ module.exports = {
         './src/app.js'
     ],
     devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        publicPath: '/',
+        historyApiFallback: true,
         hot: true,
         progress: true,
         inline: true,
         open: true,
+        host: 'localhost',
+        port: 8080,
         watchOptions: {
             poll: true
         }
