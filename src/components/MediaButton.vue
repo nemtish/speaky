@@ -85,14 +85,14 @@ export default {
 				font-size: $rec-fs;
 				background-image: -webkit-linear-gradient(top, #f50000, #b30a0a);
 				background-image: linear-gradient(top, #f50000, #b30a0a);
-				box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3),
+				box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .1),
 					inset 0px 4px 1px 1px #ff0d0d,
-					inset 0px -3px 1px 1px rgba(204,198,197,.5);
+					inset 0px -3px 1px 1px rgba(204,198,197,.1);
 
 				&:after {
 					content: "●";
-					left: 31%;
-					top: 4%;
+					left: 30%;
+					top: 5%;
 					color: white;
 				}
 
@@ -105,7 +105,7 @@ export default {
 				&:active {
 					background-image: -webkit-linear-gradient(top, #b30a0a, #b30a0a);
 					background-image: linear-gradient(top, #b30a0a, #b30a0a);
-					box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+					box-shadow: 0 3px 5px 0 rgba(0,0,0,.1), inset 0px -3px 1px 1px rgba(204,198,197,.1);
 				}
 			}
 
@@ -113,8 +113,8 @@ export default {
 				font-size: $stop-fs;
 				&:after {
 					content: "◼";
-					left: 27%;
-					top: 22%;
+					left: 30%;
+					top: 24%;
 					color: white;
 				}
 			}
@@ -122,9 +122,9 @@ export default {
 			&.play {
 				background-image: -webkit-linear-gradient(top, #21d400, #148000);
 				background-image: linear-gradient(top, #21d400, #148000);
-				box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3),
+				box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .1),
 					inset 0px 4px 1px 1px #21d400,
-					inset 0px -3px 1px 1px rgba(204,198,197,.5);
+					inset 0px -3px 1px 1px rgba(204,198,197,.1);
 
 				&:after {
 					content: "▶";
@@ -143,16 +143,16 @@ export default {
 				&:active {
 					background-image: -webkit-linear-gradient(top, #148000, #148000);
 					background-image: linear-gradient(top, #148000, #148000);
-					box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+					box-shadow: 0 3px 5px 0 rgba(0,0,0,.1), inset 0px -3px 1px 1px rgba(204,198,197,.1);
 				}
 			}
 
 			&.pause {
 				background-image: -webkit-linear-gradient(top, #ff9800, #bd7100);
 				background-image: linear-gradient(top, #ff9800, #bd7100);
-				box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3),
+				box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .1),
 					inset 0px 4px 1px 1px #fd9c0b,
-					inset 0px -3px 1px 1px rgba(204,198,197,.5);
+					inset 0px -3px 1px 1px rgba(204,198,197,.1);
 
 				&:after {
 					content: '▐▐';
@@ -170,7 +170,7 @@ export default {
 				&:active {
 					background-image: -webkit-linear-gradient(top, #bd7100, #bd7100);
 					background-image: linear-gradient(top, #bd7100, #bd7100);
-					box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+					box-shadow: 0 3px 5px 0 rgba(0,0,0,.1), inset 0px -3px 1px 1px rgba(204,198,197,.1);
 				}
 			}
 		}
