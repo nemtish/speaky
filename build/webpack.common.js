@@ -10,25 +10,10 @@ function resolve (dir) {
 }
 
 module.exports = {
-    mode: 'development',
     entry: [
         'regenerator-runtime/runtime',
         './src/app.js'
     ],
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        publicPath: '/',
-        historyApiFallback: true,
-        hot: true,
-        progress: true,
-        inline: true,
-        open: true,
-        host: 'localhost',
-        port: 8080,
-        watchOptions: {
-            poll: true
-        }
-    },
     module: {
         rules: [
             {
