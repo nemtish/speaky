@@ -52,7 +52,7 @@ export default {
             this.time = null
         },
         getLastTime () {
-            return `${this.sec}.${this.mili()}`
+            return `${this.sec}.${this.mili}`
         },
         getTime (timestamp) {
             if (!this.running) return

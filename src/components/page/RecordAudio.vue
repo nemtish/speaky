@@ -8,7 +8,7 @@
     <span
       :class="{ 'disabled': !audioData }"
       class="copy-link-btn"
-      @click="saveClickHandler">{{ btnText }}</span>
+      @click="saveHandler">{{ btnText }}</span>
 
     <media-button
       name="rec"
@@ -49,6 +49,10 @@ export default {
                 this.testTime = new Date()
             }
 
+            if (this.audioData !== null) {
+                this.$refs.timer.resetTimer()
+            }
+
             handleAction()
         },
         stopHandler () {
@@ -60,7 +64,13 @@ export default {
             this.$refs.timer.stop()
             this.recordedTime = this.$refs.timer.getLastTime()
         },
-        saveClickHandler () {
+        playHandler () {
+
+        },
+        pauseHandler () {
+
+        },
+        saveHandler () {
             const reader = new FileReader()
             reader.readAsDataURL(this.audioData.audioBlob)
             reader.onloadend = () => {
@@ -81,17 +91,20 @@ export default {
         width: 100%;
     }
     .copy-link-btn {
-        background-image: -webkit-linear-gradient(top, #edecec, #cecbc9);
-        background-image: linear-gradient(top, #edecec, #cecbc9);
-        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4), inset 0px -3px 1px 1px rgba(204, 198, 197, 0.5);
+        /*background-image: -webkit-linear-gradient(top, #edecec, #cecbc9);*/
+        /*background-image: linear-gradient(top, #edecec, #cecbc9);*/
+        background-image: -webkit-linear-gradient(top, #edecec, #edecec);
+        background-image: linear-gradient(top, #edecec, #edecec);
+        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), inset 0px -3px 1px 1px rgba(204, 198, 197, 0.1);
         cursor: pointer;
-        width: 120px;
+        width: 100px;
+        border-radius: 7px;
         padding: 5px;
         margin: 0 auto 40px;
         display: flex;
         justify-content: center;
         line-height: 32px;
-        font-size: 22px;
+        font-size: 19px;
         border: 1px solid #bfbfbf;
         &:active {
             box-shadow: inset 0px -3px 1px 1px rgba(204,198,197,.5);
@@ -102,5 +115,8 @@ export default {
         &.disabled {
             visibility: hidden;
         }
+    }
+    .action-btn {
+      display: flex;
     }
 </style>
