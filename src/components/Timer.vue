@@ -24,7 +24,8 @@ export default {
             lastTime: 0,
             running: false,
             sec: 0,
-            mili: 0
+            mili: 0,
+            restriction: 5
         }
     },
     created () {
@@ -33,8 +34,8 @@ export default {
     methods: {
         resetTimer () {
             if (this.countDown) {
-                this.sec = parseInt(this.startAt.toString().split('.')[0], 10)
-                this.mili = parseInt(this.startAt.toString().split('.')[1], 10)
+                this.sec = Math.floor(this.startAt)
+                this.mili = (this.startAt % 1).toFixed(2).substr(2)
             } else {
                 this.sec = 0
                 this.mili = 0
@@ -56,14 +57,14 @@ export default {
         },
         getTime (timestamp) {
             if (!this.running) return
-            if (this.sec >= 0 && this.sec >= 0) {
+            if (this.countDown && this.sec === 0 && this.mili < 10) {
+                this.$emit('countdown-finish')
+            } else if (this.sec > this.restriction) {
+                this.$emit('time-restriction')
+            } else {
                 this.formatTime(timestamp)
                 this.time = timestamp
                 requestAnimationFrame(this.getTime.bind(this))
-            } else {
-                this.stop()
-                this.resetTimer()
-                this.$emit('countdown-finish')
             }
         },
         formatTime (timestamp) {

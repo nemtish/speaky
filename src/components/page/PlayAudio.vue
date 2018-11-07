@@ -44,7 +44,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['get_loaded_audio'])
+        ...mapGetters(['get_loaded_audio', 'get_base_url'])
     },
     created () {
         this.getAudioData().then(async (data) => {
@@ -60,7 +60,12 @@ export default {
             return this.$store.dispatch(LOAD_AUDIO, this.$route.params.hash)
         },
         copyLinkClickHandler () {
-            documentAction.copyTextToClipboard(this.$route.params.hash)
+            documentAction.copyTextToClipboard(window.location.origin + this.$route.fullPath)
+            this.btnText = 'Copied!'
+
+            setTimeout(() => {
+                this.btnText = 'Copy link'
+            }, 1000)
         },
         playHandler () {
             this.audio.play()
@@ -70,6 +75,8 @@ export default {
             this.$refs.timer.stop()
         },
         countDownFinishHandler () {
+            this.$refs.timer.stop()
+            this.$refs.timer.resetTimer()
             this.$refs.mediaButton.action = audioActions.PLAY
         }
     }
@@ -81,32 +88,27 @@ export default {
     width: 100%;
   }
   .copy-link-btn {
-    background-image: -webkit-linear-gradient(top, #edecec, #cecbc9);
-    background-image: linear-gradient(top, #edecec, #cecbc9);
-    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4), inset 0px -3px 1px 1px rgba(204, 198, 197, 0.5);
-    cursor: pointer;
-    width: 120px;
-    padding: 5px;
-    margin: 0 auto 40px;
-    display: flex;
-    justify-content: center;
-    line-height: 32px;
-    font-size: 22px;
-    border: 1px solid #bfbfbf;
-  &:active {
-     box-shadow: inset 0px -3px 1px 1px rgba(204,198,197,.5);
-     background-image: none;
-     border: 1px solid #7d7d7d;
-   }
+      background-image: -webkit-linear-gradient(top, #edecec, #edecec);
+      background-image: linear-gradient(top, #edecec, #edecec);
+      box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), inset 0px -3px 1px 1px rgba(204, 198, 197, 0.1);
+      cursor: pointer;
+      width: 100px;
+      border-radius: 7px;
+      padding: 5px;
+      margin: 0 auto 40px;
+      display: flex;
+      justify-content: center;
+      line-height: 32px;
+      font-size: 19px;
+      border: 1px solid #bfbfbf;
+      &:active {
+        box-shadow: inset 0px -3px 1px 1px rgba(204,198,197,.5);
+        background-image: none;
+        border: 1px solid #7d7d7d;
+      }
 
-  &.disabled {
-     visibility: hidden;
-   }
+      &.disabled {
+        visibility: hidden;
+      }
   }
-  /*.action-btn {*/
-    /*width: 100%;*/
-    /*display: flex;*/
-    /*align-items: flex-end;*/
-    /*margin: 0 auto;*/
-  /*}*/
 </style>

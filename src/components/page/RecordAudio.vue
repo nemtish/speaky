@@ -3,14 +3,16 @@
     <timer
       v-show="showTimer"
       ref="timer"
-      :start-at="startTimerAt" />
+      :start-at="startTimerAt"
+      @time-restriction="timeRestrictionHandler"/>
 
     <span
       :class="{ 'disabled': !audioData }"
-      class="copy-link-btn"
+      class="save-btn"
       @click="saveHandler">{{ btnText }}</span>
 
     <media-button
+      ref="mediaButton"
       name="rec"
       @rec="recHandler"
       @stop="stopHandler" />
@@ -33,11 +35,11 @@ export default {
             showTimer: true,
             startTimerAt: 0.00,
             timer: null,
+            mediaButton: null,
             recordedTime: '',
             recorder: null,
             audioData: null,
-            btnText: 'Save',
-            testTime: null
+            btnText: 'Save'
         }
     },
     methods: {
@@ -46,7 +48,6 @@ export default {
                 this.recorder = await recorderService.recorder()
                 this.recorder.start()
                 this.$refs.timer.start()
-                this.testTime = new Date()
             }
 
             if (this.audioData !== null) {
@@ -63,6 +64,10 @@ export default {
 
             this.$refs.timer.stop()
             this.recordedTime = this.$refs.timer.getLastTime()
+        },
+        timeRestrictionHandler () {
+            this.$refs.mediaButton.$el.click()
+            this.$refs.timer.mili = 0
         },
         playHandler () {
 
@@ -90,9 +95,7 @@ export default {
     .full-width {
         width: 100%;
     }
-    .copy-link-btn {
-        /*background-image: -webkit-linear-gradient(top, #edecec, #cecbc9);*/
-        /*background-image: linear-gradient(top, #edecec, #cecbc9);*/
+    .save-btn {
         background-image: -webkit-linear-gradient(top, #edecec, #edecec);
         background-image: linear-gradient(top, #edecec, #edecec);
         box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), inset 0px -3px 1px 1px rgba(204, 198, 197, 0.1);

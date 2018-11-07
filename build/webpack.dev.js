@@ -1,8 +1,9 @@
+const webpack = require('webpack')
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
 
-module.exports = merge(common, {
+const devConfig = {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
@@ -19,4 +20,14 @@ module.exports = merge(common, {
             poll: true
         }
     }
-});
+};
+
+common.plugins.push(
+    new webpack.DefinePlugin({
+        'process.env': {
+            ROOT_API_URL: '"http://localhost:8000"',
+        }
+    }),
+)
+
+module.exports = merge(common, devConfig);
