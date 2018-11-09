@@ -69,12 +69,6 @@ export default {
             this.$refs.mediaButton.$el.click()
             this.$refs.timer.mili = 0
         },
-        playHandler () {
-
-        },
-        pauseHandler () {
-
-        },
         saveHandler () {
             const reader = new FileReader()
             reader.readAsDataURL(this.audioData.audioBlob)
