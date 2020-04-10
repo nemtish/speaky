@@ -4,6 +4,8 @@
       v-show="showTimer"
       ref="timer"
       :start-at="startTimerAt"
+      :count-down="countDown"
+      @countdown-finish="countDownFinishHandler"
       @time-restriction="timeRestrictionHandler"/>
 
     <span
@@ -13,17 +15,20 @@
 
     <media-button
       ref="mediaButton"
-      name="rec"
+      :name="mediaBtnIcon"
+      @play="playHandler"
+      @pause="pauseHandler"
       @rec="recHandler"
       @stop="stopHandler" />
   </div>
 </template>
 
 <script>
+/*eslint-disable */
 import recorderService from '../../util/audioService'
 import MediaButton from '../MediaButton.vue'
 import Timer from '../Timer.vue'
-import { SAVE_AUDIO } from '../../config/constants'
+import { audioActions, SAVE_AUDIO } from '../../config/constants';
 
 export default {
     components: {
@@ -34,12 +39,14 @@ export default {
         return {
             showTimer: true,
             startTimerAt: 0.00,
+            countDown: false,
             timer: null,
             mediaButton: null,
             recordedTime: '',
             recorder: null,
             audioData: null,
-            btnText: 'Save'
+            btnText: 'Save',
+            mediaBtnIcon: audioActions.REC,
         }
     },
     methods: {
@@ -59,15 +66,30 @@ export default {
         stopHandler () {
             this.recorder.stop().then(async (data) => {
                 this.audioData = data
-                this.audioData.play()
+                this.startTimerAt = this.$refs.timer.getLastTime()
+                this.$refs.mediaButton.action = audioActions.PLAY;
             })
 
             this.$refs.timer.stop()
+            this.countDown = true
             this.recordedTime = this.$refs.timer.getLastTime()
+        },
+        playHandler () {
+            this.audioData.audio.play()
+            this.$refs.timer.start()
+        },
+        pauseHandler () {
+            this.audioData.audio.pause()
+            this.$refs.timer.stop()
         },
         timeRestrictionHandler () {
             this.$refs.mediaButton.$el.click()
             this.$refs.timer.mili = 0
+        },
+        countDownFinishHandler () {
+            this.$refs.timer.stop()
+            this.$refs.timer.resetTimer()
+            this.$refs.mediaButton.action = audioActions.PLAY
         },
         saveHandler () {
             const reader = new FileReader()

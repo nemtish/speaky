@@ -63,4 +63,11 @@
     </a>
     <div id="app"></div>
   </body>
+  <script>
+  if (!window.MediaRecorder) {
+    document.write(
+      decodeURI('%3Cscript defer src="./src/polyfill.js">%3C/script>')
+    )
+  }
+  </script>
 </html>

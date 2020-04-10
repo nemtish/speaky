@@ -72,6 +72,7 @@ export default {
             this.$refs.timer.start()
         },
         pauseHandler () {
+            this.audio.pause()
             this.$refs.timer.stop()
         },
         countDownFinishHandler () {

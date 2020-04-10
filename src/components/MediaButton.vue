@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped>
 	$btn-size: 100px;
 	$rec-fs: $btn-size/1.5;
-	$stop-fs: $btn-size/2.14;
+	$stop-fs: $btn-size/2.1;
 
 	.btn-holder {
         width: 100%;
@@ -68,19 +68,26 @@ export default {
 			height: $btn-size;
 			position: relative;
 			border-radius: 50%;
-			float:left;
+			/*float:left;*/
 			text-decoration: none;
+            display: inline-block;
+            text-align: center;
 
 			&:after {
 				color:#e9e6e4;
 				content: "";
-				display: block;
 				height: 50px;
 				text-decoration: none;
 				text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;
-				position: absolute;
 				width: 50px;
 			}
+
+            &.rec, &.stop, &.play, &.pause {
+                &:after {
+                  line-height: 100px;
+                  color: white;
+                }
+            }
 
 			&.rec, &.stop {
 				font-size: $rec-fs;
@@ -92,9 +99,6 @@ export default {
 
 				&:after {
 					content: "●";
-					left: 30%;
-					top: 5%;
-					color: white;
 				}
 
 				&:hover {
@@ -109,14 +113,14 @@ export default {
 					box-shadow: 0 3px 5px 0 rgba(0,0,0,.1), inset 0px -3px 1px 1px rgba(204,198,197,.1);
 				}
 			}
+            &.rec:after {
+              line-height: 90px;
+            }
 
 			&.stop {
 				font-size: $stop-fs;
 				&:after {
 					content: "◼";
-					left: 30%;
-					top: 24%;
-					color: white;
 				}
 			}
 
@@ -129,10 +133,8 @@ export default {
 
 				&:after {
 					content: "▶";
-                    left: 37%;
-                    top: 25%;
-                    color: white;
                     font-size: 41px;
+                    margin-left: 7px;
 				}
 
 				&:hover {
@@ -157,10 +159,9 @@ export default {
 
 				&:after {
 					content: '▐▐';
-                    left: 32%;
-                    top: 33%;
-                    color: white;
                     font-size: 26px;
+                    margin-left: -7px;
+                    line-height: 95px;
 				}
 
 				&:hover {

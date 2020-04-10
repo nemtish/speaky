@@ -12,7 +12,8 @@ function resolve (dir) {
 module.exports = {
     entry: [
         'regenerator-runtime/runtime',
-        './src/app.js'
+        './src/app.js',
+        './src/polyfill.js'
     ],
     module: {
         rules: [
