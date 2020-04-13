@@ -17,6 +17,14 @@
 			background-image: linear-gradient(top, #edecec, #cecbc9);
 		}
 
+        input,
+        textarea,
+        button,
+        select,
+        a {
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
         /* The ribbons */
 
         .corner-ribbon{
@@ -55,4 +63,11 @@
     </a>
     <div id="app"></div>
   <script type="text/javascript" src="main.js"></script></body>
+  <script>
+  if (!window.MediaRecorder) {
+    document.write(
+      decodeURI('%3Cscript defer src="./src/polyfill.js">%3C/script>')
+    )
+  }
+  </script>
 </html>
