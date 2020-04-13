@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import RecordAudio from '../components/page/RecordAudio.vue'
-import AudioPlay from '../components/page/PlayAudio.vue'
+import AudioRecorder from '../components/page/AudioRecorder.vue'
+import AudioPlayer from '../components/page/AudioPlayer.vue'
 
 Vue.use(Router)
 
@@ -10,13 +10,13 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Home',
-            component: RecordAudio
+            name: 'Audio Recorder',
+            component: AudioRecorder
         },
         {
             path: '/:hash',
-            name: 'Audio listen',
-            component: AudioPlay
+            name: 'Audio Player',
+            component: AudioPlayer
         }
     ]
 })

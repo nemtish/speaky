@@ -103,7 +103,6 @@ export default {
     .timer {
       width: 235px;
       font-size: 250px;
-      margin: 20px auto 40px;
     }
     .sec {
       padding-left: 20%;

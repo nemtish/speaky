@@ -1,11 +1,11 @@
 <template>
   <div
-    class="btn-holder"
-    @click="btnClickHandler">
+    class="btn-holder">
     <a
       :class="action"
+      class="btn"
       href="#"
-      class="btn" />
+      @click="btnClickHandler"/>
   </div>
 </template>
 
