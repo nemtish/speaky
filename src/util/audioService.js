@@ -12,11 +12,10 @@ const recorder = () => new Promise(async (resolve) => {
 
     const stop = () => new Promise((resolve) => {
         mediaRecorder.addEventListener('stop', () => {
-            let audioBlob = new Blob(audioChunks)
+            let audioBlob = new Blob(audioChunks, {type: 'audio/mp3'})
             let audioUrl = URL.createObjectURL(audioBlob)
             let audio = new Audio(audioUrl)
-            let play = () => audio.play()
-            resolve({ audioBlob, audioUrl, play })
+            resolve({ audioBlob, audioUrl, audio })
         })
 
         mediaRecorder.stop()

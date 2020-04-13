@@ -11,7 +11,7 @@ module.exports = {
     'vue'
   ],
   rules: {
-    "indent": [2, 4],
+    "indent": [1, 4],
     "no-tabs": 0
   }
 }

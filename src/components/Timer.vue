@@ -6,6 +6,7 @@
 </template>
 
 <script>
+/*eslint-disable */
 export default {
     props: {
         startAt: {
@@ -26,6 +27,11 @@ export default {
             sec: 0,
             mili: 0,
             restriction: 5
+        }
+    },
+    watch: {
+        countDown (newVal, oldVal) { // watch it
+            console.log('Prop changed: ', newVal, ' | was: ', oldVal)
         }
     },
     created () {
@@ -53,7 +59,7 @@ export default {
             this.time = null
         },
         getLastTime () {
-            return `${this.sec}.${this.mili}`
+            return parseFloat(`${this.sec}.${Math.floor(parseFloat(this.mili))}`)
         },
         getTime (timestamp) {
             if (!this.running) return
@@ -97,7 +103,6 @@ export default {
     .timer {
       width: 235px;
       font-size: 250px;
-      margin: 20px auto 40px;
     }
     .sec {
       padding-left: 20%;
