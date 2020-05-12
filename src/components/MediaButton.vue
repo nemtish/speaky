@@ -97,10 +97,6 @@ export default {
 					inset 0px 4px 1px 1px #ff0d0d,
 					inset 0px -3px 1px 1px rgba(204,198,197,.1);
 
-				&:after {
-					content: "●";
-				}
-
 				&:hover {
 					background-image: -webkit-linear-gradient(top, #ff0d0d, #ce0404);
 					background-image: linear-gradient(top, #ff0d0d, #ce0404);
@@ -115,6 +111,7 @@ export default {
 			}
             &.rec:after {
               line-height: 90px;
+              content: "●";
             }
 
 			&.stop {
