@@ -22,7 +22,7 @@
   "homepage": "https://github.com/nemtish/speakie#readme",
   "dependencies": {
     "audio-recorder-polyfill": "^0.3.6",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "es6-promise": "^4.2.8",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
