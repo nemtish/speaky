@@ -1,4 +1,2 @@
 # speakie
-App for sending audio messages via URL 
-
-https://speaky.app/
+App for sending audio messages
